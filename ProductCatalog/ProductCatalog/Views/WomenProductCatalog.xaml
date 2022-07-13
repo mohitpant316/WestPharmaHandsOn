@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             Title="Women Catalog"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:local="clr-namespace:ProductCatalog.ViewModels"
+             x:Class="ProductCatalog.Views.WomenProductCatalog">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                        ItemsLayout="VerticalGrid, 2"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Frame  Style="{StaticResource ProductFrame}">
+                                <StackLayout Orientation="Vertical" x:DataType="model:Product">
+
+                                    <Image WidthRequest="60" HeightRequest="150" Aspect="AspectFill">
+                                        <Image.Source>
+                                            <UriImageSource
+                                            Uri="https://placeimg.com/640/480/tech"
+                                            CachingEnabled="True"
+                                             />
+                                        </Image.Source>
+                                        <Image.Effects>
+                                            <roundImage:RoundImageEffects />
+                                        </Image.Effects>
+                                    </Image>
+                                    <StackLayout Padding="10" >
+                                        <Label Text="{Binding name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{StaticResource ListItemTextStyle}" 
+                            FontSize="16"
+                            TextTransform="Uppercase"            />
+                                        <Label Text="{Binding description}" 
+                            LineBreakMode="NoWrap"
+                            Style="{StaticResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                                        <Label  >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Best Price  $" TextColor="Green"></Span>
+                                                    <Span Text="{Binding net_price}" TextColor="Green"></Span>
+                                                </FormattedString>
+
+                                            </Label.FormattedText>
+                                        </Label>
+                                        
+                                    </StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

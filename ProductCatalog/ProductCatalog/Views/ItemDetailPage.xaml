@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:convertor="clr-namespace:ProductCatalog.Utility"
+             x:Class="ProductCatalog.Views.ItemDetailPage"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convertor:PriceCalculatorConvertor x:Key="PriceCalculatorConvertor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Command="{Binding Delete}" />
+    </ContentPage.ToolbarItems>
+    <StackLayout Spacing="20" Padding="15">
+        <Image WidthRequest="300" HeightRequest="300" Aspect="AspectFill" HorizontalOptions="Center">
+            <Image.Source>
+                <UriImageSource
+                                            Uri="https://placeimg.com/640/480/tech"
+                                            CachingEnabled="True"
+                                             />
+            </Image.Source>
+            <Image.Effects>
+                <roundImage:RoundImageEffects />
+            </Image.Effects>
+        </Image>
+        <Label Text="{Binding Text}"  Style="{StaticResource ItemNameDetails}" />
+        <Label Text="{Binding Description}" FontSize="Small"  Style="{StaticResource ListItemDetailTextStyle}" />
+        <Label Style="{StaticResource ListItemTextStyle}" FontSize="20">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="$"></Span>
+                    <Span  Text="{Binding Price, Converter={StaticResource PriceCalculatorConvertor}}"></Span>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Label Text="Price Inclusive of all tax" FontSize="Small" Margin="0,-20,0,0"></Label>
+        <BoxView HeightRequest="1" BackgroundColor="LightGray"></BoxView>
+       
+    </StackLayout>
+    
+</ContentPage>
