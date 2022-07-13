@@ -27,6 +27,7 @@ namespace ProductCatalog.Views
         {
             base.OnAppearing();
             _viewModel.OnAppearing();
+            _viewModel.LoadItemsCommand.Execute(null);
            
         }
     }

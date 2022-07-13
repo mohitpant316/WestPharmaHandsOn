@@ -6,19 +6,18 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <convertor:PriceCalculatorConvertor x:Key="PriceCalculatorConvertor" />
+            <convertor:ImageUrlConvertor x:Key="ImageUrlConvertor" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Delete" Command="{Binding Delete}" />
     </ContentPage.ToolbarItems>
     <StackLayout Spacing="20" Padding="15">
-        <Image WidthRequest="300" HeightRequest="300" Aspect="AspectFill" HorizontalOptions="Center">
-            <Image.Source>
-                <UriImageSource
-                                            Uri="https://placeimg.com/640/480/tech"
-                                            CachingEnabled="True"
-                                             />
-            </Image.Source>
+        <Image WidthRequest="300" HeightRequest="300"
+               Aspect="AspectFill"
+               Source="{Binding Image, Converter={StaticResource ImageUrlConvertor}}"
+               HorizontalOptions="Center">
+            
             <Image.Effects>
                 <roundImage:RoundImageEffects />
             </Image.Effects>

@@ -2,13 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ProductCatalog.ViewModels"  
-             xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:roundImage="clr-namespace:ProductCatalog.Effects"
+             xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:convertor="clr-namespace:ProductCatalog.Utility"
              Title="Mens Catalog"
              x:Class="ProductCatalog.Views.MensProductCatalog">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
-       
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convertor:ImageUrlConvertor x:Key="ImageUrlConvertor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout Margin="10" x:DataType="local:ItemsViewModel">
         <CarouselView ItemsSource="{Binding Items}"
                       IndicatorView="indicatorView">
@@ -28,7 +32,7 @@
                                        FontSize="Large"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
-                                <Image Source="https://placeimg.com/640/480/tech" 
+                                <Image Source="{Binding image, Converter={StaticResource ImageUrlConvertor}}"
                                        Aspect="AspectFill"
                                        HeightRequest="150"
                                        WidthRequest="150"

@@ -14,6 +14,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <convertor:PriceCalculatorConvertor x:Key="PriceCalculatorConvertor" />
+            <convertor:ImageUrlConvertor x:Key="ImageUrlConvertor" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <!--
@@ -31,13 +32,7 @@
                         <Frame  Style="{StaticResource ProductFrame}">
                             <StackLayout Orientation="Horizontal" x:DataType="model:Product">
 
-                                <Image WidthRequest="100" HeightRequest="100" Aspect="AspectFill">
-                                    <Image.Source>
-                                        <UriImageSource
-                                            Uri="https://placeimg.com/640/480/tech"
-                                            CachingEnabled="True"
-                                             />
-                                    </Image.Source>
+                                <Image WidthRequest="100" HeightRequest="100" Aspect="AspectFill" Source="{Binding image, Converter={StaticResource ImageUrlConvertor}}">
                                     <Image.Effects>
                                         <roundImage:RoundImageEffects />
                                     </Image.Effects>

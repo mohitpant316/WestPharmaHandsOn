@@ -1,11 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              Title="Women Catalog"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:local="clr-namespace:ProductCatalog.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:local="clr-namespace:ProductCatalog.ViewModels" xmlns:convertor="clr-namespace:ProductCatalog.Utility"
              x:Class="ProductCatalog.Views.WomenProductCatalog">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <convertor:ImageUrlConvertor x:Key="ImageUrlConvertor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <CollectionView x:Name="ItemsListView"
@@ -18,13 +23,8 @@
                             <Frame  Style="{StaticResource ProductFrame}">
                                 <StackLayout Orientation="Vertical" x:DataType="model:Product">
 
-                                    <Image WidthRequest="60" HeightRequest="150" Aspect="AspectFill">
-                                        <Image.Source>
-                                            <UriImageSource
-                                            Uri="https://placeimg.com/640/480/tech"
-                                            CachingEnabled="True"
-                                             />
-                                        </Image.Source>
+                                    <Image WidthRequest="60" HeightRequest="150" Aspect="AspectFill"  Source="{Binding image, Converter={StaticResource ImageUrlConvertor}}">
+                                       
                                         <Image.Effects>
                                             <roundImage:RoundImageEffects />
                                         </Image.Effects>
