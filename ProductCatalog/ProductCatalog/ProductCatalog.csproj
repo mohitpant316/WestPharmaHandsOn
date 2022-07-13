@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ProductCatalog.Model\ProductCatalog.Model.csproj" />
-    <ProjectReference Include="..\..\ServicesDemo\Services.csproj" />
+    <ProjectReference Include="..\ProductWebApi\ProductWebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

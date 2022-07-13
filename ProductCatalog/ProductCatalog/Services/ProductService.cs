@@ -1,12 +1,13 @@
 ﻿using ProductCatalog.Models;
-using Services;
+using ProductCatalog.Services;
+using ProductWebApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace ProductCatalog.Services
+namespace ProductCatalog.ProductWebApi
 {
     class ProductService : IDataStore<Product>
     {

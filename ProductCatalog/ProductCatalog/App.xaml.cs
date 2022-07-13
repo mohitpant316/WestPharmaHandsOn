@@ -1,4 +1,5 @@
-﻿using ProductCatalog.Services;
+﻿using ProductCatalog.ProductWebApi;
+using ProductCatalog.Services;
 using ProductCatalog.Views;
 using System;
 using Xamarin.Forms;
