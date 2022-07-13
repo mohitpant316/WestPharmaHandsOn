@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              Title="Women Catalog"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:local="clr-namespace:ProductCatalog.ViewModels" xmlns:convertor="clr-namespace:ProductCatalog.Utility"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:local="clr-namespace:ProductCatalog.ViewModels" xmlns:convertor="clr-namespace:ProductCatalog.Utility" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="ProductCatalog.Views.WomenProductCatalog">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
@@ -23,12 +23,12 @@
                             <Frame  Style="{StaticResource ProductFrame}">
                                 <StackLayout Orientation="Vertical" x:DataType="model:Product">
 
-                                    <Image WidthRequest="60" HeightRequest="150" Aspect="AspectFill"  Source="{Binding image, Converter={StaticResource ImageUrlConvertor}}">
-                                       
-                                        <Image.Effects>
+                                    <ffimageloading:CachedImage WidthRequest="60" HeightRequest="150" Aspect="AspectFill"  Source="{Binding image}">
+
+                                        <ffimageloading:CachedImage.Effects>
                                             <roundImage:RoundImageEffects />
-                                        </Image.Effects>
-                                    </Image>
+                                        </ffimageloading:CachedImage.Effects>
+                                    </ffimageloading:CachedImage>
                                     <StackLayout Padding="10" >
                                         <Label Text="{Binding name}" 
                             LineBreakMode="NoWrap" 

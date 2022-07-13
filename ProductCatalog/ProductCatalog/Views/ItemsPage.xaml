@@ -5,6 +5,7 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:ProductCatalog.ViewModels"  
              xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:convertor="clr-namespace:ProductCatalog.Utility"
              x:Name="BrowseItemsPage">
 
@@ -32,11 +33,17 @@
                         <Frame  Style="{StaticResource ProductFrame}">
                             <StackLayout Orientation="Horizontal" x:DataType="model:Product">
 
-                                <Image WidthRequest="100" HeightRequest="100" Aspect="AspectFill" Source="{Binding image, Converter={StaticResource ImageUrlConvertor}}">
-                                    <Image.Effects>
+                               
+                                <ffimageloading:CachedImage HorizontalOptions="Center" Aspect="AspectFill"
+			                        WidthRequest="100" HeightRequest="100"
+			                        DownsampleToViewSize="true"
+                                                           
+			                        Source = "{Binding image}">
+                                    <ffimageloading:CachedImage.Effects>
                                         <roundImage:RoundImageEffects />
-                                    </Image.Effects>
-                                </Image>
+                                    </ffimageloading:CachedImage.Effects>
+                                </ffimageloading:CachedImage>
+                             
                                 <StackLayout Padding="10" >
                                     <Label Text="{Binding name}" 
                             LineBreakMode="NoWrap" 

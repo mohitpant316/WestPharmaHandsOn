@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ProductCatalog.ViewModels"  
-             xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:convertor="clr-namespace:ProductCatalog.Utility"
+             xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:convertor="clr-namespace:ProductCatalog.Utility" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title="Mens Catalog"
              x:Class="ProductCatalog.Views.MensProductCatalog">
     <ContentPage.ToolbarItems>
@@ -32,15 +32,15 @@
                                        FontSize="Large"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
-                                <Image Source="{Binding image, Converter={StaticResource ImageUrlConvertor}}"
+                                <ffimageloading:CachedImage Source="{Binding image}"
                                        Aspect="AspectFill"
                                        HeightRequest="150"
                                        WidthRequest="150"
                                        HorizontalOptions="Center">
-                                    <Image.Effects>
+                                    <ffimageloading:CachedImage.Effects>
                                         <roundImage:RoundImageEffects />
-                                    </Image.Effects>
-                                </Image>
+                                    </ffimageloading:CachedImage.Effects>
+                                </ffimageloading:CachedImage>
                                 <Label Text="{Binding description}"
                                         MaxLines="5"
                                        LineBreakMode="TailTruncation"

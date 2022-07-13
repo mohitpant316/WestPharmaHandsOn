@@ -18,6 +18,7 @@ namespace ProductCatalog.Utility
 
             var byteArray = Client.DownloadData(value.ToString());
             return ImageSource.FromStream(() => new MemoryStream(byteArray));
+             
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

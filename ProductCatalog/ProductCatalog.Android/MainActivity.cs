@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.OS;
 using ProductCatalog.Droid;
 using Xamarin.Forms;
+using FFImageLoading.Forms.Platform;
 
 [assembly: Dependency(typeof(PlatformToast))]
 
@@ -17,9 +18,10 @@ namespace ProductCatalog.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CachedImageRenderer.InitImageViewHandler();
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

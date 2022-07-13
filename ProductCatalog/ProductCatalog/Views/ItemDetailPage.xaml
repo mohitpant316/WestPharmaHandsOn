@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:convertor="clr-namespace:ProductCatalog.Utility"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:model="clr-namespace:ProductCatalog.Models;assembly=ProductCatalog.Model" xmlns:roundImage="clr-namespace:ProductCatalog.Effects" xmlns:convertor="clr-namespace:ProductCatalog.Utility" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="ProductCatalog.Views.ItemDetailPage"
              Title="{Binding Title}">
     <ContentPage.Resources>
@@ -13,15 +13,14 @@
         <ToolbarItem Text="Delete" Command="{Binding Delete}" />
     </ContentPage.ToolbarItems>
     <StackLayout Spacing="20" Padding="15">
-        <Image WidthRequest="300" HeightRequest="300"
-               Aspect="AspectFill"
-               Source="{Binding Image, Converter={StaticResource ImageUrlConvertor}}"
-               HorizontalOptions="Center">
-            
-            <Image.Effects>
+        <ffimageloading:CachedImage HorizontalOptions="Center" Aspect="AspectFill"
+			                        WidthRequest="300" HeightRequest="300"
+			                        DownsampleToViewSize="true"
+			                        Source = "{Binding Image}">
+            <ffimageloading:CachedImage.Effects>
                 <roundImage:RoundImageEffects />
-            </Image.Effects>
-        </Image>
+            </ffimageloading:CachedImage.Effects>
+        </ffimageloading:CachedImage>
         <Label Text="{Binding Text}"  Style="{StaticResource ItemNameDetails}" />
         <Label Text="{Binding Description}" FontSize="Small"  Style="{StaticResource ListItemDetailTextStyle}" />
         <Label Style="{StaticResource ListItemTextStyle}" FontSize="20">
